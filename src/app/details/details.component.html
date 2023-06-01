@@ -1,0 +1,52 @@
+<div class="page">
+    <div class="backEdit">
+        <div>
+            <button [routerLink]="['']" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
+        </div>
+        <div>
+            <!-- <button *ngIf="edit" (click)="editInitEmloyee()" pButton pRipple type="button" label="Edit" class="p-button-outlined p-button-secondary back"></button> -->
+            <button *ngIf="edit" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editInitEmloyee()"></button>
+            <button *ngIf="!edit" pButton pRipple type="button" icon="pi pi-check" (click)="editSaveEmployee(employee)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="!edit" pButton pRipple type="button" icon="pi pi-times" (click)="editCanselEmployee()" class="p-button-rounded p-button-text p-button-danger"></button>
+        </div>
+    </div>
+    
+    <div class="container text-right">
+        <div class="row">
+          <div class="col page-toDo">
+            <div>
+                <img src="{{employee.image}}" [alt]="employee.fullName">
+                <input type="text" *ngIf="!edit" [(ngModel)]="employee.image">
+            </div>
+            <div class="page-name">
+                <h1 *ngIf="edit">{{employee.fullName}}</h1>
+                <input type="text" *ngIf="!edit" [(ngModel)]="employee.fullName">
+                <h6>ID: {{employee.id}}</h6>
+            </div>
+            <div class="">
+                <h2 *ngIf="edit">{{employee.pricePerHour | currency: 'EUR'}}</h2>
+                <input *ngIf="!edit" type="text" [(ngModel)]="employee.pricePerHour">
+                <p>Price Per Hour</p>
+            </div>
+            <div class="">
+                <h3 *ngIf="edit">{{employee.birthDate | date:'dd.MM.yyyy'}}</h3>
+                <p-calendar *ngIf="!edit"[showIcon]="true" [(ngModel)]="employee.birthDate"></p-calendar>
+                <p>Birth Date</p>
+            </div>
+            <div class="">
+                <h3 *ngIf="edit">{{employee.jobTitle}}</h3>
+                <p-dropdown *ngIf="!edit" [options]="publisher" appendTo="body" [(ngModel)]="employee.jobTitle" [style]="{'width':'100%'}" [(ngModel)]="employee.jobTitle"></p-dropdown>  
+                <p>Job Title</p>
+            </div>
+            <div>
+                <p>Contract</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="backEdit">
+            <button (click)="days(employee)"  [routerLink]="['/working-days', employee.fullName, employee.id]" pButton pRipple type="button" label="Days" class="p-button-outlined p-button-secondary back"></button>
+        </div>
+      </div>
+</div>
+

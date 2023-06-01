@@ -1,0 +1,44 @@
+.page {
+    margin: 30px auto;
+    border: 1px solid #e9ecef;
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    background-color: rgb(221, 159, 43);
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+    padding: 25px;
+}
+
+.page img {
+    height: 80%;
+    border-radius: 4px;
+}
+
+.page-toDo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+    margin-top: 20px;
+}
+
+.back {
+    margin-bottom: 20px;
+}
+
+.page-name h1, h6, p {
+    text-align: left;
+    color: white;
+}
+
+.page button {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.backEdit {
+    display: flex;
+    justify-content: space-between;
+}

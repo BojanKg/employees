@@ -1,0 +1,22 @@
+:host ::ng-deep .p-dialog .employee-image {
+    width: 150px;
+    margin: 0 auto 2rem auto;
+    display: block;
+}
+
+button {
+    margin-left: 15px;
+}
+
+.employees {
+    position: relative;
+    margin: 30px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.add {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+}
