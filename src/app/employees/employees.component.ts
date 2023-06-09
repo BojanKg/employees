@@ -180,6 +180,16 @@ export class EmployeesComponent implements OnInit {
     this.lazyLoad();
   }
 
+  salaryCalc(employee: Employee) {
+    let salary = (Object.values(employee.workingDays!));
+    let allTime = [];
+    for(let i = 0; i < salary.length; i++) {
+      allTime.push(salary[i].allTime);
+    }
+    let calc =  this.calcAllTime(allTime);
+    console.log('Salary: ',calc / 3600000);
+  }
+
   lazyLoad() {
     this.loading = true;
     setTimeout(() => {
@@ -188,5 +198,7 @@ export class EmployeesComponent implements OnInit {
     }, 1000);
   }
 
-  
+  calcAllTime(allTime: number[]): number {
+    return allTime.reduce((a, b) => a + b, 0);
+  }
 }
