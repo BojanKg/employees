@@ -1,14 +1,18 @@
+<div class="back">
+    <button [routerLink]="['']" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
+</div>
 <div class="page">
     <div class="backEdit">
         <div>
-            <button [routerLink]="['']" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
-        </div>
-        <div>
             <!-- <button *ngIf="edit" (click)="editInitEmloyee()" pButton pRipple type="button" label="Edit" class="p-button-outlined p-button-secondary back"></button> -->
-            <button *ngIf="edit" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editInitEmloyee()"></button>
+            <button *ngIf="edit" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="editInitEmloyee()"></button>
             <button *ngIf="!edit" pButton pRipple type="button" icon="pi pi-check" (click)="editSaveEmployee(employee)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
             <button *ngIf="!edit" pButton pRipple type="button" icon="pi pi-times" (click)="editCanselEmployee()" class="p-button-rounded p-button-text p-button-danger"></button>
         </div>
+        <div>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEmployee(employee)"></button>
+        </div>
+        
     </div>
     
     <div class="container text-right">
@@ -45,7 +49,7 @@
         </div>
 
         <div class="backEdit">
-            <button (click)="days(employee)"  [routerLink]="['/working-days', employee.fullName, employee.id]" pButton pRipple type="button" label="Days" class="p-button-outlined p-button-secondary back"></button>
+            <button (click)="days(employee)"  [routerLink]="['/working-days', employee.fullName, employee.id]" pButton pRipple type="button" label="Days" class="p-button-outlined p-button-secondary"></button>
         </div>
       </div>
 </div>

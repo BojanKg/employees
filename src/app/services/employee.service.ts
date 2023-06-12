@@ -3,6 +3,7 @@ import { Employee } from '../employee';
 import { Observable, Subject, catchError, tap } from 'rxjs';
 import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { WorkingDays } from '../workingDays';
+import { Payoff } from '../payoff';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,22 @@ export class EmployeeService {
     this.http
       .post<[name: string]>(
         `https://employee-8c409-default-rtdb.europe-west1.firebasedatabase.app/employees/${content.id}/workingDays.json`,
+        checkedTime,
+        {
+          headers: new HttpHeaders({ 'body': "employees" }),
+          observe: 'response',
+        }
+      )
+      .subscribe({
+        next: (responseData) => console.log(responseData),
+        error: (error) => this.error.next(error.message),
+      });
+  }
+
+  setPayoff(content: Employee, checkedTime: Payoff) {
+    this.http
+      .post<[name: string]>(
+        `https://employee-8c409-default-rtdb.europe-west1.firebasedatabase.app/employees/${content.id}/payoff.json`,
         checkedTime,
         {
           headers: new HttpHeaders({ 'body': "employees" }),

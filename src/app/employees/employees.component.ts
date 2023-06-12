@@ -6,6 +6,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { DetailService } from '../services/detail.service';
 import { WorkingDays } from '../workingDays';
+import { Payoff } from '../payoff';
 
 @Component({
   selector: 'app-employees',
@@ -181,6 +182,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   salaryCalc(employee: Employee) {
+    let date = new Date();
     let salary = (Object.values(employee.workingDays!));
     let allTime = [];
     for(let i = 0; i < salary.length; i++) {
@@ -188,6 +190,15 @@ export class EmployeesComponent implements OnInit {
     }
     let calc =  this.calcAllTime(allTime);
     console.log('Salary: ',calc / 3600000);
+
+    const payoff: Payoff = {
+      hours: calc / 3600000,
+      pay: employee.pricePerHour! * calc / 3600000,
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+    }
+
+    this.employeeService.setPayoff(employee, payoff);
   }
 
   lazyLoad() {

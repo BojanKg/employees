@@ -1,3 +1,4 @@
+import { Payoff } from "./payoff"
 import { WorkingDays } from "./workingDays"
 
 export interface Employee {
@@ -13,5 +14,6 @@ export interface Employee {
         calck: number,
         check: false
     },
-    workingDays?: WorkingDays
+    workingDays?: WorkingDays,
+    payoff?: Payoff,
 }

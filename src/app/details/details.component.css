@@ -3,16 +3,14 @@
     border: 1px solid #e9ecef;
     padding: 30px;
     border-radius: 15px;
-    width: 500px;
-    background-color: rgb(221, 159, 43);
-    color: white;
+    width: 700px;
+    background-color: #c0d1e2;
     font-size: large;
     font-weight: bolder;
     padding: 25px;
 }
 
 .page img {
-    height: 80%;
     border-radius: 4px;
 }
 
@@ -24,18 +22,8 @@
 }
 
 .back {
-    margin-bottom: 20px;
-}
-
-.page-name h1, h6, p {
-    text-align: left;
-    color: white;
-}
-
-.page button {
-    background-color: black;
-    color: white;
-    border: none;
+    margin: 15px;
+    position: absolute;
 }
 
 .backEdit {

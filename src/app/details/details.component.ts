@@ -5,6 +5,7 @@ import { DetailService } from '../services/detail.service';
 import { Employee } from '../employee';
 import { EmployeeService } from '../services/employee.service';
 import { SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -17,10 +18,12 @@ export class DetailsComponent implements OnInit {
   edit = true;
   publisher: SelectItem[];
   workingDays: WorkingDays[] = [];
+  error: string | null;
+  loading: boolean = false;
 
   date: number;
 
-  constructor(private detailService: DetailService, private employeeService: EmployeeService) {}
+  constructor(private detailService: DetailService, private employeeService: EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
     this.detailService.getDetail().subscribe((data) => {
@@ -51,4 +54,47 @@ export class DetailsComponent implements OnInit {
   days(employee: Employee) {
     this.detailService.setDetail(employee);
   }
+
+  deleteEmployee(employee: Employee) {
+    // this.confirmationService.confirm({
+    //     message: 'Are you sure you want to delete ' + employee.fullName + '?',
+    //     header: 'Confirm',
+    //     icon: 'pi pi-exclamation-triangle',
+    //     accept: () => {
+    //         this.employeeService.deleteEmployee(employee).subscribe({
+    //           next: (posts) => {
+    //             console.log(posts);
+    //           },
+    //           error: (error) => {
+    //             console.log('ERROR =', error);
+    //             this.error = error.message;
+    //           },
+    //         });
+    
+    //         this.employees = this.employees.filter((val) => val.id !== employee.id);
+    //         this.employee = {};
+    //         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Deleted', life: 3000 });
+    //         this.lazyLoad();
+    //     }
+    // });
+
+    this.employeeService.deleteEmployee(employee).subscribe({
+      next: (posts) => {
+        console.log(posts);
+      },
+      error: (error) => {
+        console.log('ERROR =', error);
+        this.error = error.message;
+      },
+    });
+    this.lazyLoad();
+    this.router.navigate(['']);
+ }
+
+ lazyLoad() {
+  this.loading = true;
+  setTimeout(() => {
+    this.loading = false;
+  }, 1000);
+}
 }
