@@ -1,27 +1,13 @@
 {
   "hosting": {
-    "public": "dist/employee-calc",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "../src/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      }
-    ]
+    "frameworksBackend": {
+      "region": "europe-west1"
+    }
   }
 }
