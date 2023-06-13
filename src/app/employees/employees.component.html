@@ -1,10 +1,6 @@
 <div class="employees">
-    <!-- <div class="add">
-        <app-add *ngIf="!add"></app-add>
-    </div> -->
     <p-toolbar styleClass="mb-4 gap-2">
         <ng-template pTemplate="left">
-            <!-- <button [ngStyle]="{background:'rgb(221, 159, 43)', border: 'none'}" pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button> -->
             <button pButton pRipple  icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEmployees()" [disabled]="!selectedEmployees || !selectedEmployees.length"></button>
         </ng-template>
 
@@ -48,7 +44,7 @@
                 <th pSortableColumn="checkTime.check" style="width:10%">Check <p-sortIcon field="checkTime.check"></p-sortIcon></th>
                 <th pSortableColumn="checkTime.in" style="width:14%">Check Time<p-sortIcon field="checkTime.in"></p-sortIcon></th>
                 <th pSortableColumn="checkTime.calck" style="width:12%">Work Time<p-sortIcon field="checkTime.calck"></p-sortIcon></th>
-                <th style="width:14%"></th>
+                <th style="width:14%">Payoff</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-employee>
