@@ -50,6 +50,7 @@
 
         <div class="backEdit">
             <button (click)="days(employee)"  [routerLink]="['/working-days', employee.fullName, employee.id]" pButton pRipple type="button" label="Days" class="p-button-outlined p-button-secondary"></button>
+            <button (click)="days(employee)"  [routerLink]="['/payoff', employee.fullName, employee.id]" pButton pRipple type="button" label="Payoff" class="p-button-outlined p-button-secondary"></button>
         </div>
       </div>
 </div>

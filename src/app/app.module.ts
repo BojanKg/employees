@@ -95,6 +95,7 @@ import { AnimateModule } from 'primeng/animate';
 import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { PayoffComponent } from './payoff/payoff.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     AddComponent,
     DetailsComponent,
     WorkingDaysComponent,
-    HeaderComponent
+    HeaderComponent,
+    PayoffComponent
   ],
   imports: [
     BrowserModule,
