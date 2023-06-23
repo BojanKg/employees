@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+//import {AngularFireModule} from '@angular/fire';
+//import { AngularFirestoreModule } from '@angular/fire/firestore';
  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,8 @@ import { AddComponent } from './add/add.component';
 import { DetailsComponent } from './details/details.component';
 import { WorkingDaysComponent } from './working-days/working-days.component';
 import { HeaderComponent } from './header/header.component';
+import { PayoffComponent } from './payoff/payoff.component';
+import { AuthComponent } from './auth/auth.component';
 
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -95,7 +99,6 @@ import { AnimateModule } from 'primeng/animate';
 import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { PayoffComponent } from './payoff/payoff.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,8 @@ import { PayoffComponent } from './payoff/payoff.component';
     DetailsComponent,
     WorkingDaysComponent,
     HeaderComponent,
-    PayoffComponent
+    PayoffComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
