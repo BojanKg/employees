@@ -1,25 +1,40 @@
-<form class="auth"
-[formGroup]="logIn"
-(ngSubmit)="log()">
-  <div formGroupName="userData">
-    <div class="mb-3">
-      <label for="user" class="form-label">User</label>
-      <input type="text" class="form-control" id="user" aria-describedby="emailHelp" formControlName="user">
+
+<div class="log">
+  <div *ngIf="!formLogin" class="successful">Successful login</div>
+    <div *ngIf="formLogin" class="successful">
+        {{ isLoginMode ? 'Sign Up' : 'Login' }}
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password">
-      <span
-                *ngIf="
-                  !logIn.get('userData.password')?.valid &&
-                  logIn.get('userData.password')?.touched
-                "
-                class="help-block"
-                >This field is required!
-              </span>
-      <div id="emailHelp" class="form-text">We'll never share password with anyone else.</div>
+    <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
     </div>
-  </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+        <app-log-spin></app-log-spin>
+    </div>
+
+  <form class="auth"
+  [formGroup]="logIn"
+  (ngSubmit)="auth()">
+    <div formGroupName="userData">
+      <div class="mb-3">
+        <label for="user" class="form-label">User</label>
+        <input type="text" class="form-control" id="user" aria-describedby="emailHelp" formControlName="user">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <span
+                  *ngIf="
+                    !logIn.get('userData.password')?.valid &&
+                    logIn.get('userData.password')?.touched
+                  "
+                  class="help-block"
+                  >This field is required!
+                </span>
+        <div id="emailHelp" class="form-text">We'll never share password with anyone else.</div>
+      </div>
+    </div>
     
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <button *ngIf="!isLoginMode" type="button" class="btn btn-primary"  (click)="logOut()">Log out</button>
+  </form>
+</div>

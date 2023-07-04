@@ -4,8 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+//import firebase from 'firebase/app';
 //import {AngularFireModule} from '@angular/fire';
 //import { AngularFirestoreModule } from '@angular/fire/firestore';
+//import { AngularFireDatabaseModule } from '@angular/fire/database';
+//import { AngularFireAuth } from '@angular/fire/auth';
  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -99,6 +102,7 @@ import { AnimateModule } from 'primeng/animate';
 import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LogSpinComponent } from './auth/log-spin/log-spin.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +113,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     WorkingDaysComponent,
     HeaderComponent,
     PayoffComponent,
-    AuthComponent
+    AuthComponent,
+    LogSpinComponent
   ],
   imports: [
     BrowserModule,
@@ -206,7 +211,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     TreeTableModule,
     AccordionModule,
     AvatarModule,
-    AnimateModule
+    AnimateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
