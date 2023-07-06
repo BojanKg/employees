@@ -29,9 +29,7 @@ export class DetailsComponent implements OnInit {
     this.detailService.getDetail().subscribe((data) => {
       this.employee = data;
       this.workingDays = Object.values(data.workingDays!);
-      console.log(data.workingDays!)
     });
-    console.log(this.workingDays);
     this.publisher = [{label: 'Help Desk', value: 'Help Desk'},{label: 'IT Support', value: 'IT Support'},{label: 'Sales', value: 'Sales'}];
 
     const date = new Date;
@@ -56,28 +54,6 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteEmployee(employee: Employee) {
-    // this.confirmationService.confirm({
-    //     message: 'Are you sure you want to delete ' + employee.fullName + '?',
-    //     header: 'Confirm',
-    //     icon: 'pi pi-exclamation-triangle',
-    //     accept: () => {
-    //         this.employeeService.deleteEmployee(employee).subscribe({
-    //           next: (posts) => {
-    //             console.log(posts);
-    //           },
-    //           error: (error) => {
-    //             console.log('ERROR =', error);
-    //             this.error = error.message;
-    //           },
-    //         });
-    
-    //         this.employees = this.employees.filter((val) => val.id !== employee.id);
-    //         this.employee = {};
-    //         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Deleted', life: 3000 });
-    //         this.lazyLoad();
-    //     }
-    // });
-
     this.employeeService.deleteEmployee(employee).subscribe({
       next: (posts) => {
         console.log(posts);
