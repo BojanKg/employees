@@ -60,10 +60,10 @@ export class AuthComponent implements OnInit {
         this.isLoading = false;
         this.authService.setLoginLog(this.loginLog);
         if (this.isLoginMode) {
-          this.router.navigate(['/log']);
+          this.router.navigate(['/employees']);
         } 
         else {
-          this.router.navigate(['']);
+          this.router.navigate(['auth']);
         }
       },
       error: errorMessage => {

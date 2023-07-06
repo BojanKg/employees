@@ -1,9 +1,6 @@
 
 <div class="log">
   <div *ngIf="!formLogin" class="successful">Successful login</div>
-    <div *ngIf="formLogin" class="successful">
-        {{ isLoginMode ? 'Sign Up' : 'Login' }}
-    </div>
     <div class="alert alert-danger" *ngIf="error">
         <p>{{ error }}</p>
     </div>
