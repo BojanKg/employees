@@ -26,6 +26,7 @@ export class EmployeesComponent implements OnInit {
   selectedEmployees: Employee[] | null;
   submitted: boolean;
   check = false;
+  dateCheck: number;
 
   loading: boolean = false;
 
@@ -33,6 +34,8 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees();
+    let date = new Date();
+    this.dateCheck = date.getTime();
   }
 
   getEmployees() {
@@ -151,6 +154,7 @@ export class EmployeesComponent implements OnInit {
       let dateCompare = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
       let dateEmployee = new Date();
       dateEmployee.setDate(employee.workingDays?.in!);
+      //console.log("Poredjenje: ", dateEmployee);
       let ec = `${dateEmployee.getDate()}.${dateEmployee.getMonth()}.${dateEmployee.getFullYear()}`;
       console.log("Datum: ", ec, "-", dateCompare)
 
@@ -211,5 +215,14 @@ export class EmployeesComponent implements OnInit {
 
   calcAllTime(allTime: number[]): number {
     return allTime.reduce((a, b) => a + b, 0);
+  }
+
+  dateCompar(dateChek: number, dateOut: number): boolean {
+    let date1 = new Date(dateChek);
+    let date2 = new Date(dateOut);
+
+    let com1 = `${date1.getDay()}.${date1.getMonth() - 1}.${date1.getFullYear()}`;
+    let com2 = `${date2.getDay()}.${date2.getMonth() - 1}.${date2.getFullYear()}`;
+    return com1 === com2;
   }
 }

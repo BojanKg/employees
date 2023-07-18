@@ -114,7 +114,7 @@ import { LogSpinComponent } from './auth/log-spin/log-spin.component';
     HeaderComponent,
     PayoffComponent,
     AuthComponent,
-    LogSpinComponent
+    LogSpinComponent,
   ],
   imports: [
     BrowserModule,
