@@ -14,7 +14,7 @@
             </div>
         </ng-template>
     </p-toolbar>
-
+    <div class="date"><div>{{dateCheck | date:'dd.MM.yyyy'}}</div><div>{{dateCheck | date:'HH:mm'}}</div><div>{{dateCheck | date:'EEEE'}}</div></div>
     <p-table
         [loading]="loading"
         #dt
