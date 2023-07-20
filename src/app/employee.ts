@@ -12,7 +12,11 @@ export interface Employee {
         in: number,
         out: number,
         calck: number,
-        check: false
+        check: false,
+        in1: number,
+        out1: number,
+        calck1: number,
+        allTime: number
     },
     workingDays?: WorkingDays,
     payoff?: Payoff,

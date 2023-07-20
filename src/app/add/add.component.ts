@@ -65,7 +65,11 @@ export class AddComponent implements OnInit {
         check: false,
         calck: 0,
         in: 0,
-        out: 0
+        out: 0,
+        in1: 0,
+        out1: 0,
+        calck1: 0,
+        allTime: 0,
       },
       //workingDays: workingDays
     }

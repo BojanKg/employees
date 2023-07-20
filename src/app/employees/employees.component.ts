@@ -139,11 +139,14 @@ export class EmployeesComponent implements OnInit {
     if(employee.checkTime?.check) {
       let date = new Date();
       let dateIn = date.getTime();
-      if(employee.checkTime.out === dateIn) {
-
+      if(this.dateCompar(employee.checkTime.in, dateIn)) {
+        console.log("Duplo cekiranje: ", employee.checkTime.in, "-", dateIn);
+        this.employeeService.getCheckTime(employee, 'in1', dateIn);
+        this.employeeService.getCheckTime(employee, 'check', true);
+      } else {
+        this.employeeService.getCheckTime(employee, 'in', dateIn);
+        this.employeeService.getCheckTime(employee, 'check', true);
       }
-      this.employeeService.getCheckTime(employee, 'in', dateIn);
-      this.employeeService.getCheckTime(employee, 'check', true);
     } else {
       let date = new Date();
       let dateOut = date.getTime();
