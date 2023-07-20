@@ -59,7 +59,7 @@
                 <td><p-checkbox [binary]="true" inputId="binary" [(ngModel)]="employee.checkTime.check" (click)="calcDayPay(employee)"></p-checkbox><span *ngIf="!employee.checkTime.check">Out</span><span *ngIf="employee.checkTime.check">IN</span></td>
                 <td (click)="editEmployee(employee)" [routerLink]="['/details', employee.fullName, employee.id]"><div *ngIf="dateCompar(dateCheck, employee.checkTime.in)">{{employee.checkTime.in | date:'HH:mm:ss'}} - <span *ngIf="employee.checkTime.in < employee.checkTime.out">{{employee.checkTime.out | date:'HH:mm:ss'}}</span></div><div *ngIf="!dateCompar(dateCheck, employee.checkTime.in)">00:00:00</div></td>
                 <td (click)="editEmployee(employee)" [routerLink]="['/details', employee.fullName, employee.id]" *ngIf="employee.checkTime.in < employee.checkTime.out && dateCompar(dateCheck, employee.checkTime.in)">{{employee.checkTime.calck - 3600000 | date:'HH:mm:ss'}}</td>
-                <td (click)="editEmployee(employee)" [routerLink]="['/details', employee.fullName, employee.id]" *ngIf="employee.checkTime.in > employee.checkTime.out"><div>00:00:00</div><div>00:00:00</div></td>
+                <td (click)="editEmployee(employee)" [routerLink]="['/details', employee.fullName, employee.id]" *ngIf="employee.checkTime.in > employee.checkTime.out">00:00:00</td>
                 <td (click)="editEmployee(employee)" [routerLink]="['/details', employee.fullName, employee.id]" *ngIf="!dateCompar(dateCheck, employee.checkTime.in)">00:00:00</td>
                 <td>
                     <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="salaryCalc(employee)"></button>
