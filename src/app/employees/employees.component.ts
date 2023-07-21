@@ -27,6 +27,7 @@ export class EmployeesComponent implements OnInit {
   submitted: boolean;
   check = false;
   dateCheck: number;
+  modalShow = false;
 
   loading: boolean = false;
 
@@ -181,6 +182,12 @@ export class EmployeesComponent implements OnInit {
           this.employeeService.setWorkingDays(employee, workingDays);
         }
       }
+    } else {
+      this.employee = employee;
+      this.modalShow = true;
+      setTimeout(() => {
+        this.modalShow = false;
+      }, 5000);
     }
     this.lazyLoad();
   }
