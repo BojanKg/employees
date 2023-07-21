@@ -110,6 +110,22 @@ export class EmployeeService {
       });
   }
 
+  setWorkingDaysUp(content: Employee, checkedTime: WorkingDays, key: string) {
+    this.http
+      .put<[name: string]>(
+        `https://employee-8c409-default-rtdb.europe-west1.firebasedatabase.app/employees/${content.id}/workingDays/${key}.json`,
+        checkedTime,
+        {
+          headers: new HttpHeaders({ 'body': "employees" }),
+          observe: 'response',
+        }
+      )
+      .subscribe({
+        next: (responseData) => console.log(responseData),
+        error: (error) => this.error.next(error.message),
+      });
+  }
+
   setPayoff(content: Employee, checkedTime: Payoff) {
     this.http
       .post<[name: string]>(

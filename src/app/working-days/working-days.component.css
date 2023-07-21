@@ -1,3 +1,7 @@
 .working-days {
     margin: 30px;
 }
+
+.td p-cellEditor{
+    display: block;
+}

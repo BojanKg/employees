@@ -129,60 +129,57 @@ export class EmployeesComponent implements OnInit {
 
   calcDayPay(employee: Employee) {
     let workingKeys: string[];
-    let key: string;
+    let key: string = '';
     this.detailService.setDetail(employee);
     this.detailService.getDetail().subscribe((data) => {
       workingKeys = (Object.keys(data.workingDays!));
       key = workingKeys[workingKeys.length-1];
     });
-    
-    if(employee.checkTime?.check) {
-      let date = new Date();
-      let dateIn = date.getTime();
-      if(this.dateCompar(employee.checkTime.in, dateIn)) {
-        console.log("Duplo cekiranje: ", employee.checkTime.in, "-", dateIn);
-        this.employeeService.getCheckTime(employee, 'in1', dateIn);
-        this.employeeService.getCheckTime(employee, 'check', true);
-      } else {
-        this.employeeService.getCheckTime(employee, 'in', dateIn);
-        this.employeeService.getCheckTime(employee, 'check', true);
-      }
-    } else {
-      let date = new Date();
-      let dateOut = date.getTime();
-      this.employeeService.getCheckTime(employee, 'out', dateOut);
-      this.employeeService.getCheckTime(employee, 'check', false);
-      this.employeeService.getCheckTime(employee, 'calck', dateOut - employee.checkTime?.in!);
 
-      let dateCompare = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
-      let dateEmployee = new Date();
-      dateEmployee.setDate(employee.workingDays?.in!);
-      //console.log("Poredjenje: ", dateEmployee);
-      let ec = `${dateEmployee.getDate()}.${dateEmployee.getMonth()}.${dateEmployee.getFullYear()}`;
-      console.log("Datum: ", ec, "-", dateCompare)
+    let date = new Date();
+    let dateCheck = date.getTime();
 
-      if(ec === dateCompare) {
-        const workingDays: WorkingDays = {
-          in: employee.workingDays?.in!,
-          out: employee.workingDays?.out!,
-          time: employee.workingDays?.time!,
-          in1: employee.checkTime?.in!,
-          out1: dateOut,
-          time1: dateOut - employee.checkTime?.in!,
-          allTime: employee.workingDays?.time! + dateOut - employee.checkTime?.in!
+    if(!this.dateCompar(employee.checkTime!.out1, dateCheck)) {
+      if(employee.checkTime?.check) {
+        if(this.dateCompar(employee.checkTime.in, dateCheck)) {
+          this.employeeService.getCheckTime(employee, 'in1', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', true);
+        } else {
+          this.employeeService.getCheckTime(employee, 'in', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', true);
         }
-        //this.employeeService.setWorkingDays(employee, workingDays);
       } else {
-        const workingDays: WorkingDays = {
-          in: employee.checkTime?.in!,
-          out: dateOut,
-          time: dateOut - employee.checkTime?.in!,
-          in1: 0,
-          out1: 0,
-          time1: 0,
-          allTime: dateOut - employee.checkTime?.in!
+        if(this.dateCompar(employee.checkTime!.out, dateCheck)) {
+          this.employeeService.getCheckTime(employee, 'out1', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', false);
+          this.employeeService.getCheckTime(employee, 'calck1', dateCheck - employee.checkTime?.in1!);
+  
+          const workingDays: WorkingDays = {
+            in: employee.checkTime?.in!,
+            out: employee.checkTime?.out!,
+            time: employee.checkTime?.out! - employee.checkTime?.in!,
+            in1: employee.checkTime?.in1!,
+            out1: dateCheck,
+            time1: dateCheck - employee.checkTime?.in1!,
+            allTime: dateCheck - employee.checkTime?.in1! + employee.checkTime?.calck!
+          }
+          this.employeeService.setWorkingDaysUp(employee, workingDays, key);
+        } else {
+          this.employeeService.getCheckTime(employee, 'out', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', false);
+          this.employeeService.getCheckTime(employee, 'calck', dateCheck - employee.checkTime?.in!);
+  
+          const workingDays: WorkingDays = {
+            in: employee.checkTime?.in!,
+            out: dateCheck,
+            time: dateCheck - employee.checkTime?.in!,
+            in1: 0,
+            out1: 0,
+            time1: 0,
+            allTime: dateCheck - employee.checkTime?.in!
+          }
+          this.employeeService.setWorkingDays(employee, workingDays);
         }
-        this.employeeService.setWorkingDays(employee, workingDays);
       }
     }
     this.lazyLoad();

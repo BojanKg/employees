@@ -25,7 +25,7 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td [pEditableColumn]="day.in" pEditableColumnField="in">
+                <td [pEditableColumn]="day.in" pEditableColumnField="in" class="td">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="number" [(ngModel)]="day.in" required />
@@ -34,8 +34,16 @@
                             {{ day.in | date: 'HH:mm:ss' }}
                         </ng-template>
                     </p-cellEditor>
+                    <p-cellEditor *ngIf="day.in < day.in1">
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="day.in1" required />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ day.in1 | date: 'HH:mm:ss' }}
+                        </ng-template>
+                    </p-cellEditor>
                 </td>
-                <td [pEditableColumn]="day.out" pEditableColumnField="out">
+                <td [pEditableColumn]="day.out" pEditableColumnField="out" class="td">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
                             <input pInputText type="number" [(ngModel)]="day.out" required />
@@ -44,14 +52,22 @@
                             {{ day.out | date: 'HH:mm:ss'}}
                         </ng-template>
                     </p-cellEditor>
+                    <p-cellEditor *ngIf="day.out < day.out1">
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="day.out1" required />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ day.out1 | date: 'HH:mm:ss'}}
+                        </ng-template>
+                    </p-cellEditor>
                 </td>
                 <td [pEditableColumn]="day.time" pEditableColumnField="time">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="number" [(ngModel)]="day.time" />
+                            <input pInputText type="number" [(ngModel)]="day.allTime" />
                         </ng-template>
                         <ng-template pTemplate="output">
-                            {{ day.time - 3600000 | date: 'HH:mm:ss'}}
+                            {{ day.allTime - 3600000 | date: 'HH:mm:ss'}}
                         </ng-template>
                     </p-cellEditor>
                 </td>
