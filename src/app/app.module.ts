@@ -103,6 +103,7 @@ import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LogSpinComponent } from './auth/log-spin/log-spin.component';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { LogSpinComponent } from './auth/log-spin/log-spin.component';
     PayoffComponent,
     AuthComponent,
     LogSpinComponent,
+    PopUpComponent,
   ],
   imports: [
     BrowserModule,

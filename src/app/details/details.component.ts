@@ -68,9 +68,9 @@ export class DetailsComponent implements OnInit {
  }
 
  lazyLoad() {
-  this.loading = true;
-  setTimeout(() => {
-    this.loading = false;
-  }, 1000);
-}
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  }
 }

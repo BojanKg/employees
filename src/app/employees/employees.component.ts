@@ -7,6 +7,7 @@ import { Table } from 'primeng/table';
 import { DetailService } from '../services/detail.service';
 import { WorkingDays } from '../workingDays';
 import { Payoff } from '../payoff';
+import { PopUpService } from '../services/pop-up.service';
 
 @Component({
   selector: 'app-employees',
@@ -27,11 +28,10 @@ export class EmployeesComponent implements OnInit {
   submitted: boolean;
   check = false;
   dateCheck: number;
-  modalShow = false;
 
   loading: boolean = false;
 
-  constructor(private employeeService: EmployeeService, private confirmationService: ConfirmationService, private messageService: MessageService, private detailService: DetailService) {}
+  constructor(private employeeService: EmployeeService, private confirmationService: ConfirmationService, private messageService: MessageService, private detailService: DetailService, private popUp: PopUpService) {}
 
   ngOnInit(): void {
     this.getEmployees();
@@ -183,10 +183,11 @@ export class EmployeesComponent implements OnInit {
         }
       }
     } else {
+      this.popUp.setCheck(true);
+      this.detailService.setDetail(employee);
       this.employee = employee;
-      this.modalShow = true;
       setTimeout(() => {
-        this.modalShow = false;
+        this.popUp.setCheck(false);
       }, 5000);
     }
     this.lazyLoad();
