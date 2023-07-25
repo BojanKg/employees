@@ -20,6 +20,7 @@ export class DetailsComponent implements OnInit {
   workingDays: WorkingDays[] = [];
   error: string | null;
   loading: boolean = false;
+  delate = false;
 
   date: number;
 
@@ -64,13 +65,22 @@ export class DetailsComponent implements OnInit {
       },
     });
     this.lazyLoad();
-    this.router.navigate(['']);
+    this.delate = false;
+ }
+
+ confirmDelete() {
+  if(this.delate === true) {
+    this.delate = false;
+  } else {
+    this.delate = true;
+  }
  }
 
  lazyLoad() {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
+      this.router.navigate(['']);
     }, 1000);
   }
 }

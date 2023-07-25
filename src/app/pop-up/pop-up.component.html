@@ -1,9 +1,24 @@
-<div *ngIf="check" class="modal-margin card" id="staticBackdrop" >
+<div *ngIf="multiCheck" class="modal-margin card" id="staticBackdrop" >
     <div class="card-header">
         {{employee.fullName}}
-      </div>
-      <div class="card-body">
+    </div>
+    <div class="card-body">
         <h5 class="card-title">Sorry</h5>
         <p class="card-text">You do not have the right to check in again.</p>
-      </div>
-  </div>
+    </div>
+
+    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="checkClick()"></button>
+</div>
+
+<div *ngIf="check" class="modal-margin card" id="staticBackdrop" >
+    <div>{{date}}</div>
+    <img src="{{employee.image}}" [alt]="employee.fullName" width="100" class="shadow-4">
+    <div class="card-header">
+        {{employee.fullName}}
+    </div>
+    <div class="card-body">
+        <h5 class="in-out"><span *ngIf="employee.checkTime?.check">IN</span><span *ngIf="!employee.checkTime?.check">OUT</span></h5>
+    </div>
+
+    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="checkClick()"></button>
+</div>

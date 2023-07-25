@@ -9,7 +9,10 @@ import { DetailService } from '../services/detail.service';
   styleUrls: ['./pop-up.component.css']
 })
 export class PopUpComponent implements OnInit {
+  date: number;
+  time: number;
   employee: Employee;
+  multiCheck = false;
   check = false;
   
   constructor(private popUp: PopUpService, private detail: DetailService) {}
@@ -22,5 +25,19 @@ export class PopUpComponent implements OnInit {
     this.detail.getDetail().subscribe((data) => {
       this.employee = data;
     })
+
+    this.popUp.getMultiCheck().subscribe((data) => {
+      this.multiCheck = data;
+    });
+
+    let date = new Date();
+
+    this.date = date.getMonth();
+    this.time = date.getDate();
+  }
+
+  checkClick() {
+    this.multiCheck = false;
+    this.check = false;
   }
 }

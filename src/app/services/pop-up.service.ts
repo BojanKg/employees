@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PopUpService {
   private check = new BehaviorSubject<boolean>(false);
+  private multiCheck = new BehaviorSubject<boolean>(false);
 
   setCheck(check: boolean) {
     this.check.next(check);
@@ -13,6 +14,14 @@ export class PopUpService {
 
   getCheck() {
     return this.check.asObservable();
+  }
+
+  setMultiCheck(multiCheck: boolean) {
+    this.multiCheck.next(multiCheck);
+  }
+
+  getMultiCheck() {
+    return this.multiCheck.asObservable();
   }
 
   constructor() { }

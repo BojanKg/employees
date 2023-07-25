@@ -143,14 +143,17 @@ export class EmployeesComponent implements OnInit {
     if(!this.dateCompar(employee.checkTime!.out1, dateCheck)) {
       if(employee.checkTime?.check) {
         if(this.dateCompar(employee.checkTime.in, dateCheck)) {
+          this.popUpCheck();
           this.employeeService.getCheckTime(employee, 'in1', dateCheck);
           this.employeeService.getCheckTime(employee, 'check', true);
         } else {
+          this.popUpCheck();
           this.employeeService.getCheckTime(employee, 'in', dateCheck);
           this.employeeService.getCheckTime(employee, 'check', true);
         }
       } else {
         if(this.dateCompar(employee.checkTime!.out, dateCheck)) {
+          this.popUpCheck();
           this.employeeService.getCheckTime(employee, 'out1', dateCheck);
           this.employeeService.getCheckTime(employee, 'check', false);
           this.employeeService.getCheckTime(employee, 'calck1', dateCheck - employee.checkTime?.in1!);
@@ -166,6 +169,7 @@ export class EmployeesComponent implements OnInit {
           }
           this.employeeService.setWorkingDaysUp(employee, workingDays, key);
         } else {
+          this.popUpCheck();
           this.employeeService.getCheckTime(employee, 'out', dateCheck);
           this.employeeService.getCheckTime(employee, 'check', false);
           this.employeeService.getCheckTime(employee, 'calck', dateCheck - employee.checkTime?.in!);
@@ -183,11 +187,11 @@ export class EmployeesComponent implements OnInit {
         }
       }
     } else {
-      this.popUp.setCheck(true);
+      this.popUp.setMultiCheck(true);
       this.detailService.setDetail(employee);
       this.employee = employee;
       setTimeout(() => {
-        this.popUp.setCheck(false);
+        this.popUp.setMultiCheck(false);
       }, 5000);
     }
     this.lazyLoad();
@@ -232,5 +236,12 @@ export class EmployeesComponent implements OnInit {
     let com1 = `${date1.getDay()}.${date1.getMonth() - 1}.${date1.getFullYear()}`;
     let com2 = `${date2.getDay()}.${date2.getMonth() - 1}.${date2.getFullYear()}`;
     return com1 === com2;
+  }
+
+  popUpCheck() {
+    this.popUp.setCheck(true);
+    setTimeout(() => {
+      this.popUp.setCheck(false);
+    }, 5000);
   }
 }

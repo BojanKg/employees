@@ -36,3 +36,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.in-out {
+    margin-left: 10px;
+}

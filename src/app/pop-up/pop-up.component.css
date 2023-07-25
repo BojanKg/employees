@@ -7,3 +7,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.modal-margin img {
+    margin: 0 auto 20px auto;
+}
+
+.modal-margin button {
+    margin: 0 auto 0 auto;
+}
+
+.in-out {
+    text-align: center;
+}
