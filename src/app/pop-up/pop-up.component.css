@@ -19,3 +19,8 @@
 .in-out {
     text-align: center;
 }
+.modal-margin div:first-child {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}

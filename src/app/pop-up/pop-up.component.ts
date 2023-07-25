@@ -9,7 +9,6 @@ import { DetailService } from '../services/detail.service';
   styleUrls: ['./pop-up.component.css']
 })
 export class PopUpComponent implements OnInit {
-  date: number;
   time: number;
   employee: Employee;
   multiCheck = false;
@@ -31,9 +30,7 @@ export class PopUpComponent implements OnInit {
     });
 
     let date = new Date();
-
-    this.date = date.getMonth();
-    this.time = date.getDate();
+    this.time = date.getTime();
   }
 
   checkClick() {
