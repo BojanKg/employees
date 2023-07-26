@@ -104,6 +104,7 @@ import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LogSpinComponent } from './auth/log-spin/log-spin.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { CkeckComponent } from './ckeck/ckeck.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     AuthComponent,
     LogSpinComponent,
     PopUpComponent,
+    CkeckComponent,
   ],
   imports: [
     BrowserModule,

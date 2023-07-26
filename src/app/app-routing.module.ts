@@ -6,6 +6,7 @@ import { WorkingDaysComponent } from './working-days/working-days.component';
 import { AddComponent } from './add/add.component';
 import { PayoffComponent } from './payoff/payoff.component';
 import { AuthComponent } from './auth/auth.component';
+import { CkeckComponent } from './ckeck/ckeck.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/employees', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'payoff/:fullName/:id', component: PayoffComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'ckeck', component: CkeckComponent },
 ];
 
 @NgModule({
