@@ -7,12 +7,15 @@
     </div>
 
     <div class="scan">
-        <button (click)="scanText()">Skeniraj tekst</button>
-        <button (click)="toggleCamera()">{{ cameraOn ? 'Isključi kameru' : 'Uključi kameru' }}</button>
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="scanText()"></button>
+        <button pButton pRipple icon="pi pi-" class="p-button-rounded p-button-warning" (click)="toggleCamera()">{{ cameraOn ? 'ON' : 'OFF' }}</button>
     </div>
 
     <div *ngIf="scannedText">
       <h3>Prepoznati tekst:</h3>
       <p>{{ scannedText }}</p>
+      <div>
+        {{employee.fullName}}
+      </div>
     </div>
 </div>

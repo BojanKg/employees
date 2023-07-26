@@ -1,5 +1,8 @@
+import { EmployeeService } from './../services/employee.service';
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as Tesseract from 'tesseract.js';
+import { Employee } from '../employee';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ckeck',
@@ -10,8 +13,27 @@ export class CkeckComponent implements AfterViewInit {
   @ViewChild('videoElement') videoElement: ElementRef;
   @ViewChild('canvasElement') canvasElement: ElementRef;
 
+  private errorSub: Subscription;
+  error: string | null;
   public cameraOn: boolean = false;
   public scannedText: string;
+
+  employee: Employee;
+
+  constructor(private employeesService: EmployeeService) {}
+
+  getEmployee(id: string) {
+    this.errorSub = this.employeesService.getEmployee(id)
+      .subscribe({
+        next: (employee) => {
+          this.employee = employee;
+        },
+        error: (error) => {
+          console.log('ERROR =', error);
+          this.error = error.message;
+        },
+      })
+  }
   
   ngAfterViewInit(): void {
     this.initCamera();
@@ -48,15 +70,19 @@ export class CkeckComponent implements AfterViewInit {
     );
 
     this.scannedText = data.text;
+
+    this.getEmployee(this.scannedText);
+
+    console.log(this.employee);
   }
 
   toggleCamera() {
     this.cameraOn = !this.cameraOn;
 
     if (this.cameraOn) {
-      this.startCamera();
-    } else {
       this.stopCamera();
+    } else {
+      this.startCamera();
     }
   }
 

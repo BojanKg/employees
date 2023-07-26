@@ -56,6 +56,19 @@ export class EmployeesComponent implements OnInit {
       })
   }
 
+  getEmployee(id: string) {
+    this.errorSub = this.employeeService.getEmployee(id)
+      .subscribe({
+        next: (employee) => {
+          this.employee = employee;
+        },
+        error: (error) => {
+          console.log('ERROR =', error);
+          this.error = error.message;
+        },
+      })
+  }
+
   ngOnDestroy() {
     this.errorSub.unsubscribe();
   }
@@ -195,6 +208,12 @@ export class EmployeesComponent implements OnInit {
       }, 5000);
     }
     this.lazyLoad();
+  }
+
+  checkEmployee(id: string) {
+    this.employeeService.getEmployee(id);
+    let employee = this.employee;
+    this.calcDayPay(employee);
   }
 
   salaryCalc(employee: Employee) {

@@ -19,6 +19,12 @@ export class EmployeeService {
       );
   }
 
+  getEmployee(id: string): Observable<Employee> {
+    return this.http.get<Employee>(`https://employee-8c409-default-rtdb.europe-west1.firebasedatabase.app/employees/${id}.json`)
+    .pipe(
+    );
+  }
+
   addEmployee(employee: Employee) {
     return this.http.post<[name: string]>(
       `https://employee-8c409-default-rtdb.europe-west1.firebasedatabase.app/employees.json`,
