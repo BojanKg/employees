@@ -11,5 +11,9 @@
 
 .scan {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.scan button:first-child {
+    margin-right: 150px;
 }
