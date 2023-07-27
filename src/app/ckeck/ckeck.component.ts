@@ -1,8 +1,11 @@
+import { EmployeesComponent } from './../employees/employees.component';
 import { EmployeeService } from './../services/employee.service';
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as Tesseract from 'tesseract.js';
 import { Employee } from '../employee';
 import { Subscription } from 'rxjs';
+import { DetailService } from '../services/detail.service';
+import { PopUpService } from '../services/pop-up.service';
 
 @Component({
   selector: 'app-ckeck',
@@ -12,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class CkeckComponent implements AfterViewInit {
   @ViewChild('videoElement') videoElement: ElementRef;
   @ViewChild('canvasElement') canvasElement: ElementRef;
+  @ViewChild(EmployeesComponent) calckDayPay: EmployeesComponent;
 
   private errorSub: Subscription;
   error: string | null;
@@ -20,7 +24,7 @@ export class CkeckComponent implements AfterViewInit {
 
   employee: Employee;
 
-  constructor(private employeesService: EmployeeService) {}
+  constructor(private employeesService: EmployeeService, private detailsService: DetailService, private popUp: PopUpService) {}
 
   getEmployee(id: string) {
     this.errorSub = this.employeesService.getEmployee(id)
@@ -68,12 +72,20 @@ export class CkeckComponent implements AfterViewInit {
       'eng', // Možete koristiti druge jezike zavisno od podrške Tesseract.js
       { logger: info => console.log(info) } // Opciono, koristi se za ispisivanje informacija tokom prepoznavanja
     );
+    let sT = data.text;
+    let part = sT.split(' ');
 
-    this.scannedText = data.text;
+    this.scannedText = part.reduce((one, two) => {
+      return two.length > one.length ? two: one;
+    }, '');
 
     this.getEmployee(this.scannedText);
 
-    console.log(this.employee);
+    this.detailsService.setDetail(this.employee);
+    
+    this.calckDayPay.checkDayPay(this.employee);
+
+    this.popUpCheck();
   }
 
   toggleCamera() {
@@ -101,6 +113,15 @@ export class CkeckComponent implements AfterViewInit {
       tracks.forEach(track => track.stop());
       this.videoElement.nativeElement.srcObject = null;
     }
+  }
+
+  popUpCheck() {
+    let date = new Date();
+    this.popUp.setDate(date.getTime());
+    this.popUp.setCheck(true);
+    setTimeout(() => {
+      this.popUp.setCheck(false);
+    }, 5000);
   }
 
   ngOnDestroy() {

@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class PopUpService {
   private check = new BehaviorSubject<boolean>(false);
   private multiCheck = new BehaviorSubject<boolean>(false);
+  private date = new BehaviorSubject<number>(0);
 
   setCheck(check: boolean) {
     this.check.next(check);
@@ -22,6 +23,14 @@ export class PopUpService {
 
   getMultiCheck() {
     return this.multiCheck.asObservable();
+  }
+
+  setDate(date: number) {
+    this.date.next(date);
+  }
+
+  getDate() {
+    return this.date.asObservable();
   }
 
   constructor() { }

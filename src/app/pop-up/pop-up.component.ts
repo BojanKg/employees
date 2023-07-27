@@ -29,8 +29,9 @@ export class PopUpComponent implements OnInit {
       this.multiCheck = data;
     });
 
-    let date = new Date();
-    this.time = date.getTime();
+    this.popUp.getDate().subscribe((data) => {
+      this.time = data;
+    })
   }
 
   checkClick() {

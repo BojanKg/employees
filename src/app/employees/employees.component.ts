@@ -210,6 +210,10 @@ export class EmployeesComponent implements OnInit {
     this.lazyLoad();
   }
 
+  checkDayPay(employee: Employee) {
+    this.calcDayPay(employee);
+  }
+
   checkEmployee(id: string) {
     this.employeeService.getEmployee(id);
     let employee = this.employee;
@@ -258,6 +262,8 @@ export class EmployeesComponent implements OnInit {
   }
 
   popUpCheck() {
+    let date = new Date();
+    this.popUp.setDate(date.getTime());
     this.popUp.setCheck(true);
     setTimeout(() => {
       this.popUp.setCheck(false);
