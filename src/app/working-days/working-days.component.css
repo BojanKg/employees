@@ -5,3 +5,8 @@
 .td p-cellEditor{
     display: block;
 }
+
+.working-days div {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,6 +1,7 @@
 <div class="working-days">
     <div>
         <button  [routerLink]="['/details', employee.fullName, employee.id]" pButton pRipple type="button" label="Back" class="p-button-outlined p-button-secondary back"></button>
+        <p-dropdown [options]="month" [(ngModel)]="selectedMonth" optionLabel="name" (click)="getMonth()"></p-dropdown>
     </div>
 </div>
 <div class="working-days">
@@ -14,7 +15,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-day let-editing="editing">
-            <tr>
+            <tr *ngIf="dateCompar(day.in) || selectedMonth!.name == 'All'">
                 <td [pEditableColumn]="day.in" pEditableColumnField="in">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
