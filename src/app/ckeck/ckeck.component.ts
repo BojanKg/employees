@@ -40,14 +40,27 @@ export class CkeckComponent implements AfterViewInit {
   }
   
   ngAfterViewInit(): void {
-    this.initCamera();
+    this.initCamera('environment');
   }
 
-  async initCamera() {
+  // async initCamera() {
+  //   try {
+  //     const video = this.videoElement.nativeElement;
+  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+  //     video.srcObject = stream;
+  //   } catch (error) {
+  //     console.error('Greška prilikom inicijalizacije kamere:', error);
+  //   }
+  // }
+
+  async initCamera(facingMode = 'user') {
     try {
       const video = this.videoElement.nativeElement;
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: facingMode },
+      });
+  
       video.srcObject = stream;
     } catch (error) {
       console.error('Greška prilikom inicijalizacije kamere:', error);
