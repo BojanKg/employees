@@ -93,7 +93,7 @@ export class CkeckComponent implements AfterViewInit {
         return two.length > one.length ? two: one;
       }, '');
 
-      await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza od 1 sekunde pre sledeće obrade
+      await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza od 3 sekunde pre sledeće obrade
 
       this.getEmployee(this.scannedText);
 
