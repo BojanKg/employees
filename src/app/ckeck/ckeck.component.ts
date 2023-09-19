@@ -68,37 +68,43 @@ export class CkeckComponent implements AfterViewInit {
   }
 
   async scanText() {
-    const video = this.videoElement.nativeElement;
-    const canvas = this.canvasElement.nativeElement;
-    const context = canvas.getContext('2d');
+    while (true) {
+      const video = this.videoElement.nativeElement;
+      const canvas = this.canvasElement.nativeElement;
+      const context = canvas.getContext('2d');
 
-    // Postavljanje dimenzija canvas-a na dimenzije videa
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+      // Postavljanje dimenzija canvas-a na dimenzije videa
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
 
-    // Crtanje videa na canvas
-    context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      // Crtanje videa na canvas
+      context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-    // Prepoznavanje teksta sa slike
-    const { data } = await Tesseract.recognize(
-      canvas,
-      'eng', // Možete koristiti druge jezike zavisno od podrške Tesseract.js
-      { logger: info => console.log(info) } // Opciono, koristi se za ispisivanje informacija tokom prepoznavanja
-    );
-    let sT = data.text;
-    let part = sT.split(' ');
+      // Prepoznavanje teksta sa slike
+      const { data } = await Tesseract.recognize(
+        canvas,
+        'eng', // Možete koristiti druge jezike zavisno od podrške Tesseract.js
+        { logger: info => console.log(info) } // Opciono, koristi se za ispisivanje informacija tokom prepoznavanja
+      );
+      let sT = data.text;
+      let part = sT.split(' ');
 
-    this.scannedText = part.reduce((one, two) => {
-      return two.length > one.length ? two: one;
-    }, '');
+      this.scannedText = part.reduce((one, two) => {
+        return two.length > one.length ? two: one;
+      }, '');
 
-    this.getEmployee(this.scannedText);
+      await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza od 1 sekunde pre sledeće obrade
 
-    this.detailsService.setDetail(this.employee);
+      this.getEmployee(this.scannedText);
+
+      this.detailsService.setDetail(this.employee);
     
-    this.calckDayPay.checkDayPay(this.employee);
+      this.calckDayPay.checkDayPay(this.employee);
 
-    this.popUpCheck();
+      this.popUpCheck();
+    }
+    
+    
   }
 
   toggleCamera() {
@@ -142,3 +148,36 @@ export class CkeckComponent implements AfterViewInit {
   }
 
 }
+// // Dodajte HTML elemente za interakciju sa korisnikom, na primer dugme za promenu kamere:
+// <button onclick="switchCamera()">Promeni kameru</button>
+
+// // JavaScript kod:
+// let currentFacingMode = 'user'; // Inicijalno koristimo prednju kameru
+
+// async function initCamera() {
+//   try {
+//     const video = this.videoElement.nativeElement;
+//     const stream = await navigator.mediaDevices.getUserMedia({
+//       video: { facingMode: currentFacingMode },
+//     });
+
+//     video.srcObject = stream;
+//   } catch (error) {
+//     console.error('Greška prilikom inicijalizacije kamere:', error);
+//   }
+// }
+
+// // Funkcija za prebacivanje kamere
+// async function switchCamera() {
+//   if (currentFacingMode === 'user') {
+//     currentFacingMode = 'environment'; // Prebacujemo na zadnju kameru
+//   } else {
+//     currentFacingMode = 'user'; // Prebacujemo na prednju kameru
+//   }
+
+//   // Ponovo inicijalizujemo kameru sa novim facingMode
+//   await initCamera();
+// }
+
+// // Inicijalizacija kamere kada se stranica učita
+// initCamera();

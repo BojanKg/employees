@@ -15,8 +15,9 @@
   <div *ngIf="scannedText">
     <h3>Prepoznati tekst:</h3>
     <p>{{ scannedText }}</p>
-    <div>
+    <div *ngIf="employee">
       {{employee.fullName!}}
+      <app-pop-up></app-pop-up>
     </div>
   </div>
 </div>
