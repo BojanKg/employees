@@ -146,5 +146,4 @@ export class CkeckComponent implements AfterViewInit {
   ngOnDestroy() {
     this.stopCamera();
   }
-
 }
