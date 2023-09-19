@@ -148,36 +148,3 @@ export class CkeckComponent implements AfterViewInit {
   }
 
 }
-// // Dodajte HTML elemente za interakciju sa korisnikom, na primer dugme za promenu kamere:
-// <button onclick="switchCamera()">Promeni kameru</button>
-
-// // JavaScript kod:
-// let currentFacingMode = 'user'; // Inicijalno koristimo prednju kameru
-
-// async function initCamera() {
-//   try {
-//     const video = this.videoElement.nativeElement;
-//     const stream = await navigator.mediaDevices.getUserMedia({
-//       video: { facingMode: currentFacingMode },
-//     });
-
-//     video.srcObject = stream;
-//   } catch (error) {
-//     console.error('Greška prilikom inicijalizacije kamere:', error);
-//   }
-// }
-
-// // Funkcija za prebacivanje kamere
-// async function switchCamera() {
-//   if (currentFacingMode === 'user') {
-//     currentFacingMode = 'environment'; // Prebacujemo na zadnju kameru
-//   } else {
-//     currentFacingMode = 'user'; // Prebacujemo na prednju kameru
-//   }
-
-//   // Ponovo inicijalizujemo kameru sa novim facingMode
-//   await initCamera();
-// }
-
-// // Inicijalizacija kamere kada se stranica učita
-// initCamera();
