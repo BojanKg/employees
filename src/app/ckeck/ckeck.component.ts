@@ -6,6 +6,7 @@ import { Employee } from '../employee';
 import { Subscription } from 'rxjs';
 import { DetailService } from '../services/detail.service';
 import { PopUpService } from '../services/pop-up.service';
+import { WorkingDays } from '../workingDays';
 
 @Component({
   selector: 'app-ckeck',
@@ -24,10 +25,10 @@ export class CkeckComponent implements AfterViewInit {
 
   employee: Employee;
 
-  constructor(private employeesService: EmployeeService, private detailsService: DetailService, private popUp: PopUpService) {}
+  constructor(private employeeService: EmployeeService, private detailService: DetailService, private popUp: PopUpService) {}
 
   getEmployee(id: string) {
-    this.errorSub = this.employeesService.getEmployee(id)
+    this.errorSub = this.employeeService.getEmployee(id)
       .subscribe({
         next: (employee) => {
           this.employee = employee;
@@ -41,7 +42,6 @@ export class CkeckComponent implements AfterViewInit {
   
   ngAfterViewInit(): void {
     this.initCamera('environment');
-    this.calckDayPay.calcDayPay(this.employee);
   }
 
   async initCamera(facingMode = 'user') {
@@ -88,14 +88,9 @@ export class CkeckComponent implements AfterViewInit {
 
       if(this.employee) {
         this.stopCamera();
-        this.detailsService.setDetail(this.employee);    
-        if (this.calckDayPay) {
-          // Sada možete pristupiti svojstvima i metodama calckDayPay
-          this.calckDayPay.checkDayPay(this.employee);
-       } else {
-          console.log("calckDayPay nije inicijalizovan.");
-       }
-        this.popUpCheck();
+        //this.detailsService.setDetail(this.employee);    
+        this.calcDayPay(this.employee);
+        //this.popUpCheck();
       } 
     }
   }
@@ -127,6 +122,74 @@ export class CkeckComponent implements AfterViewInit {
     }
   }
 
+  calcDayPay(employee: Employee) {
+    let workingKeys: string[];
+    let key: string = '';
+    this.detailService.setDetail(employee);
+    this.detailService.getDetail().subscribe((data) => {
+      workingKeys = (Object.keys(data.workingDays!));
+      key = workingKeys[workingKeys.length-1];
+    });
+
+    let date = new Date();
+    let dateCheck = date.getTime();
+
+    if(!this.dateCompar(employee.checkTime!.out1, dateCheck)) {
+      if(employee.checkTime?.check) {
+        if(this.dateCompar(employee.checkTime.in, dateCheck)) {
+          this.popUpCheck();
+          this.employeeService.getCheckTime(employee, 'in1', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', true);
+        } else {
+          this.popUpCheck();
+          this.employeeService.getCheckTime(employee, 'in', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', true);
+        }
+      } else {
+        if(this.dateCompar(employee.checkTime!.out, dateCheck)) {
+          this.popUpCheck();
+          this.employeeService.getCheckTime(employee, 'out1', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', false);
+          this.employeeService.getCheckTime(employee, 'calck1', dateCheck - employee.checkTime?.in1!);
+  
+          const workingDays: WorkingDays = {
+            in: employee.checkTime?.in!,
+            out: employee.checkTime?.out!,
+            time: employee.checkTime?.out! - employee.checkTime?.in!,
+            in1: employee.checkTime?.in1!,
+            out1: dateCheck,
+            time1: dateCheck - employee.checkTime?.in1!,
+            allTime: dateCheck - employee.checkTime?.in1! + employee.checkTime?.calck!
+          }
+          this.employeeService.setWorkingDaysUp(employee, workingDays, key);
+        } else {
+          this.popUpCheck();
+          this.employeeService.getCheckTime(employee, 'out', dateCheck);
+          this.employeeService.getCheckTime(employee, 'check', false);
+          this.employeeService.getCheckTime(employee, 'calck', dateCheck - employee.checkTime?.in!);
+  
+          const workingDays: WorkingDays = {
+            in: employee.checkTime?.in!,
+            out: dateCheck,
+            time: dateCheck - employee.checkTime?.in!,
+            in1: 0,
+            out1: 0,
+            time1: 0,
+            allTime: dateCheck - employee.checkTime?.in!
+          }
+          this.employeeService.setWorkingDays(employee, workingDays);
+        }
+      }
+    } else {
+      this.popUp.setMultiCheck(true);
+      this.detailService.setDetail(employee);
+      this.employee = employee;
+      setTimeout(() => {
+        this.popUp.setMultiCheck(false);
+      }, 5000);
+    }
+  }
+
   popUpCheck() {
     let date = new Date();
     this.popUp.setDate(date.getTime());
@@ -134,6 +197,15 @@ export class CkeckComponent implements AfterViewInit {
     setTimeout(() => {
       this.popUp.setCheck(false);
     }, 5000);
+  }
+
+  dateCompar(dateChek: number, dateOut: number): boolean {
+    let date1 = new Date(dateChek);
+    let date2 = new Date(dateOut);
+
+    let com1 = `${date1.getDay()}.${date1.getMonth() - 1}.${date1.getFullYear()}`;
+    let com2 = `${date2.getDay()}.${date2.getMonth() - 1}.${date2.getFullYear()}`;
+    return com1 === com2;
   }
 
   ngOnDestroy() {
