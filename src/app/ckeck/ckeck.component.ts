@@ -41,18 +41,8 @@ export class CkeckComponent implements AfterViewInit {
   
   ngAfterViewInit(): void {
     this.initCamera('environment');
+    this.calckDayPay.calcDayPay(this.employee);
   }
-
-  // async initCamera() {
-  //   try {
-  //     const video = this.videoElement.nativeElement;
-  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
-  //     video.srcObject = stream;
-  //   } catch (error) {
-  //     console.error('Greška prilikom inicijalizacije kamere:', error);
-  //   }
-  // }
 
   async initCamera(facingMode = 'user') {
     try {
@@ -92,18 +82,22 @@ export class CkeckComponent implements AfterViewInit {
         return two.length > one.length ? two: one;
       }, '');
 
-      await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza od 3 sekunde pre sledeće obrade
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Pauza od 1 sekunde pre sledeće obrade
 
       this.getEmployee(this.scannedText);
 
-      this.detailsService.setDetail(this.employee);
-    
-      this.calckDayPay.checkDayPay(this.employee);
-
-      this.popUpCheck();
+      if(this.employee) {
+        this.stopCamera();
+        this.detailsService.setDetail(this.employee);    
+        if (this.calckDayPay) {
+          // Sada možete pristupiti svojstvima i metodama calckDayPay
+          this.calckDayPay.checkDayPay(this.employee);
+       } else {
+          console.log("calckDayPay nije inicijalizovan.");
+       }
+        this.popUpCheck();
+      } 
     }
-    
-    
   }
 
   toggleCamera() {
