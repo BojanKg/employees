@@ -73,7 +73,6 @@ export class CkeckComponent implements AfterViewInit {
       const canvas = this.canvasElement.nativeElement;
       const context = canvas.getContext('2d');
 
-      // Postavljanje dimenzija canvas-a na dimenzije videa
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
 
