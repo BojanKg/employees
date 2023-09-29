@@ -135,8 +135,8 @@ export class CkeckComponent implements AfterViewInit {
     let dateCheck = date.getTime();
 
     if(!this.dateCompar(employee.checkTime!.out1, dateCheck)) {
-      if(employee.checkTime?.check) {
-        if(this.dateCompar(employee.checkTime.in, dateCheck)) {
+      if(!employee.checkTime?.check) {
+        if(this.dateCompar(employee.checkTime!.in, dateCheck)) {
           this.popUpCheck();
           this.employeeService.getCheckTime(employee, 'in1', dateCheck);
           this.employeeService.getCheckTime(employee, 'check', true);
