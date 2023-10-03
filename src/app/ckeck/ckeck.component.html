@@ -1,23 +1,22 @@
+<app-pop-up></app-pop-up>
 <div>
   <app-pop-up></app-pop-up>
   <div class="camera">
       <div>
           <video class="canvas" #videoElement width="345" height="260" autoplay></video>
           <canvas #canvasElement width="345" height="260" style="display: none;"></canvas>
-      </div>
+
+          <div class="scanText" *ngIf="scannedText">
+            <p *ngIf="!employee">{{ scannedText }}</p>
+            <div *ngIf="employee">
+              {{employee.id}}  
+            </div>
+          </div>
+      </div>  
   </div>
 
   <div class="scan">
       <button pButton pRipple icon="pi pi-" class="p-button-rounded p-button-warning" (click)="scanText()">Scan</button>
       <button pButton pRipple icon="pi pi-" class="p-button-rounded p-button-warning" (click)="toggleCamera()">{{ cameraOn ? 'ON' : 'OFF' }}</button>
-  </div>
-
-  <div *ngIf="scannedText">
-    <h3>Prepoznati tekst:</h3>
-    <p>{{ scannedText }}</p>
-    <div *ngIf="employee">
-      {{employee.fullName!}}
-      <app-pop-up></app-pop-up>
-    </div>
   </div>
 </div>

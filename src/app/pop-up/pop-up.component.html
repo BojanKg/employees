@@ -22,3 +22,16 @@
 
     <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="checkClick()"></button>
 </div>
+
+<div *ngIf="checkCamera" class="modal-margin card" id="staticBackdrop" >
+    <div>{{time | date:'dd.MMMM.yyyy'}} {{time | date:'HH:mm:ss'}}</div>
+    <img src="{{employee.image}}" [alt]="employee.fullName" width="100" class="shadow-4">
+    <div class="card-header">
+        {{employee.fullName}}
+    </div>
+    <div class="card-body in-out">
+        <h5 class="in-out"><span *ngIf="employee.checkTime?.check">OUT</span><span *ngIf="!employee.checkTime?.check">IN</span></h5>
+    </div>
+
+    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="checkClick()"></button>
+</div>

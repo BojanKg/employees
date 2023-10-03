@@ -17,3 +17,9 @@
 .scan button:first-child {
     margin-right: 150px;
 }
+
+.scanText {
+    position: relative;
+    top: 5px;
+    text-align: center;
+}

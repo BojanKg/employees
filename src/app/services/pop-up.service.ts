@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PopUpService {
   private check = new BehaviorSubject<boolean>(false);
+  private checkCamera = new BehaviorSubject<boolean>(false);
   private multiCheck = new BehaviorSubject<boolean>(false);
   private date = new BehaviorSubject<number>(0);
 
@@ -15,6 +16,14 @@ export class PopUpService {
 
   getCheck() {
     return this.check.asObservable();
+  }
+
+  setCheckCamera(checkCamera: boolean) {
+    this.checkCamera.next(checkCamera);
+  }
+
+  getCheckCamera() {
+    return this.checkCamera.asObservable();
   }
 
   setMultiCheck(multiCheck: boolean) {

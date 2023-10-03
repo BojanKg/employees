@@ -13,6 +13,7 @@ export class PopUpComponent implements OnInit {
   employee: Employee;
   multiCheck = false;
   check = false;
+  checkCamera = false;
   
   constructor(private popUp: PopUpService, private detail: DetailService) {}
   
@@ -20,6 +21,10 @@ export class PopUpComponent implements OnInit {
     this.popUp.getCheck().subscribe((data) => {
       this.check = data;
     });
+
+    this.popUp.getCheckCamera().subscribe((data) => {
+      this.checkCamera = data;
+    })
 
     this.detail.getDetail().subscribe((data) => {
       this.employee = data;
@@ -37,5 +42,6 @@ export class PopUpComponent implements OnInit {
   checkClick() {
     this.multiCheck = false;
     this.check = false;
+    this.checkCamera = false;
   }
 }

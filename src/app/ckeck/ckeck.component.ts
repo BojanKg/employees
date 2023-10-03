@@ -72,32 +72,33 @@ export class CkeckComponent implements AfterViewInit {
       // Prepoznavanje teksta sa slike
       const { data } = await Tesseract.recognize(
         canvas,
-        'eng', // Možete koristiti druge jezike zavisno od podrške Tesseract.js
-        { logger: info => console.log(info) } // Opciono, koristi se za ispisivanje informacija tokom prepoznavanja
+        'eng',
+        { logger: info => console.log(info) }
       );
-      let sT = data.text;
-      let part = sT.split(' ');
 
-      this.scannedText = part.reduce((one, two) => {
-        return two.length > one.length ? two: one;
-      }, '');
+      let sT = data.text;
+      // let part = sT.split(' ');
+      // let orgText = '';
+
+      // this.scannedText = part.reduce((one, two) => {
+      //   return two.length > one.length ? two: one;
+      // }, '');
+
+      this.scannedText = this.scanCheckText(sT);
 
       await new Promise(resolve => setTimeout(resolve, 1000)); // Pauza od 1 sekunde pre sledeće obrade
 
       this.getEmployee(this.scannedText);
 
       if(this.employee) {
-        this.stopCamera();
-        //this.detailsService.setDetail(this.employee);    
+        this.stopCamera();   
         this.calcDayPay(this.employee);
-        //this.popUpCheck();
       } 
     }
   }
 
   toggleCamera() {
     this.cameraOn = !this.cameraOn;
-
     if (this.cameraOn) {
       this.stopCamera();
     } else {
@@ -122,7 +123,20 @@ export class CkeckComponent implements AfterViewInit {
     }
   }
 
-  calcDayPay(employee: Employee) {
+  scanCheckText(text: string) {
+    const orgText = text.split(' ');
+    let checkID = '';
+
+    for(let text of orgText) {
+      const timeText = text;
+      if(timeText.length > checkID.length) {
+        checkID = timeText;
+      }
+    }
+    return checkID;
+  }
+
+  calcDayPay(employee: Employee) { 
     let workingKeys: string[];
     let key: string = '';
     this.detailService.setDetail(employee);
@@ -193,9 +207,9 @@ export class CkeckComponent implements AfterViewInit {
   popUpCheck() {
     let date = new Date();
     this.popUp.setDate(date.getTime());
-    this.popUp.setCheck(true);
+    this.popUp.setCheckCamera(true);
     setTimeout(() => {
-      this.popUp.setCheck(false);
+      this.popUp.setCheckCamera(false);
     }, 5000);
   }
 
