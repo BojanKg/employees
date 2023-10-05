@@ -50,3 +50,21 @@
 .confirmDelete > button {
     margin-right: 10px;
 }
+
+@media screen and (max-width: 720px) {
+    .page {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: medium;
+    }
+
+    .page-toDo {
+        display: grid;
+    }
+
+    .back {
+        margin: 15px;
+        position: relative;
+    }
+}

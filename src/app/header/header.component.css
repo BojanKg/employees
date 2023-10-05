@@ -1,0 +1,78 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f2327;
+    box-shadow: 0 0 20px #000;
+}
+.container {
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+}
+.logo {
+    margin-right: 50px;
+}
+li {
+    display: flex;
+    align-items: center;
+}
+.list {
+    list-style: none;
+    display: flex;
+    pointer-events: none;
+    gap: 20px;
+    margin-bottom: 0;
+}
+.list *{
+  transition: .2s;
+}
+.list:hover > * {
+  opacity: 0.3;
+}
+.list > * {
+  pointer-events: auto;
+}
+
+.list:hover > *:hover {
+  opacity: 1;
+}
+#toggler,
+.navbar label {
+    display: none;
+    color: #fff;
+}
+@media screen and (max-width: 720px) {
+    .menu {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+    }
+    .list {
+        flex-direction: column;
+        align-items: start;
+        padding: 20px;
+    }
+    .navbar label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    #toggler:checked ~ .menu {
+        max-height: 100%;
+    }
+} */
