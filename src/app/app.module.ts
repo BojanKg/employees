@@ -105,6 +105,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LogSpinComponent } from './auth/log-spin/log-spin.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { CkeckComponent } from './ckeck/ckeck.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -216,6 +217,7 @@ import { CkeckComponent } from './ckeck/ckeck.component';
     AccordionModule,
     AvatarModule,
     AnimateModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -43,7 +43,7 @@
             <div class="page-name">
                 <h1 *ngIf="edit">{{employee.fullName}}</h1>
                 <input type="text" *ngIf="!edit" [(ngModel)]="employee.fullName">
-                <h6>ID: {{employee.id}}</h6>
+                <h3>ID: {{employee.id}}</h3>
             </div>
             <div class="">
                 <h2 *ngIf="edit">{{employee.pricePerHour | currency: 'EUR'}}</h2>
