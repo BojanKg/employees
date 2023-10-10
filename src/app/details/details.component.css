@@ -58,13 +58,21 @@
         margin-right: 10px;
         font-size: medium;
     }
-
-    .page-toDo {
-        display: grid;
-    }
-
     .back {
         margin: 15px;
         position: relative;
+    }
+}
+@media screen and (max-width: 950px) {
+    .back {
+        margin: 15px;
+        position: relative;
+    }
+}
+@media screen and (max-width: 560px) {
+    .page-toDo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
