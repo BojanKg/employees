@@ -143,6 +143,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   calcDayPay(employee: Employee) {
+    const audio = new Audio('https://drive.google.com/file/d/1E8gzbks53daO5ncOWTVqz4-cbu5dGpic/view?usp=sharing');
+    audio.load();
+    audio.play();
+
     let workingKeys: string[];
     let key: string = '';
     this.detailService.setDetail(employee);

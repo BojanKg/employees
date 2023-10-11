@@ -222,6 +222,31 @@ export class CkeckComponent implements AfterViewInit {
     return com1 === com2;
   }
 
+  showTime() {
+    var date = new Date();
+    var h: any = date.getHours();
+    var m: any = date.getMinutes();
+    var s: any = date.getSeconds();
+
+    if(false) {
+      if(h == 0) {
+        h = 12;
+      }
+
+      if(h > 12) {
+        h = h - 12;
+      }
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+
+    var time = h + ":" + m + ":" + s;
+    document.getElementById("MyClockDisplay")!.innerText = time;
+    setTimeout(() => this.showTime(), 1000);
+  }
+
   ngOnDestroy() {
     this.stopCamera();
   }
