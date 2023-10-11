@@ -8,22 +8,24 @@
     z-index: 3;
     width: 100%;
     top: 0;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    color: rgb(28, 57, 57);
 }
 
 .navbar-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    border: 1px solid #fff;
+    border: 1px solid rgb(28, 57, 57);
     padding: 6px;
     border-radius: 15%;
-    color: black;
 }
 
 .bar {
     width: 25px;
     height: 3px;
-    background-color: #fff;
+    background-color: rgb(28, 57, 57);
     margin: 3px 0;
 }
 
@@ -45,7 +47,7 @@
 }
 
 .toggle-border {
-    border: 3px solid #fff;
+    border: 3px solid rgb(28, 57, 57);
     padding: 4px;
 }
 
