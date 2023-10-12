@@ -25,15 +25,13 @@
 }
 
 .clock {
-
-	background-color: #000;
-
-	color: cyan;
-
+	color: rgb(65, 74, 74);
 	display: grid;
-
 	place-items: center;
-
 	font-size: 50px;
+    margin-top: 85px;
+}
 
+.camera-page {
+    height: 70vh;
 }

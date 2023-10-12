@@ -1,10 +1,14 @@
 .auth {
     background: var(--surface-card);
     margin: auto;
-    margin-top: 50px;
+    margin-top: 85px;
     width: 420px;
     padding: 40px;
     border-radius: 10px;
     margin-bottom: 1rem;
     border: 1px solid #dee2e6;
+}
+
+.log {
+    height: 70vh;
 }

@@ -232,7 +232,6 @@ export class CkeckComponent implements AfterViewInit {
       if(h == 0) {
         h = 12;
       }
-
       if(h > 12) {
         h = h - 12;
       }

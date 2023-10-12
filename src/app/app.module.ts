@@ -106,6 +106,7 @@ import { LogSpinComponent } from './auth/log-spin/log-spin.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { CkeckComponent } from './ckeck/ckeck.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     LogSpinComponent,
     PopUpComponent,
     CkeckComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

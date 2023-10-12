@@ -9,4 +9,9 @@
 .working-days div {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+}
+
+.back {
+    margin-top: 42.5px;
 }

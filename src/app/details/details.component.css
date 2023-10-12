@@ -1,5 +1,5 @@
 .page {
-    margin: 30px auto;
+    margin: 85px auto;
     border: 1px solid #e9ecef;
     padding: 30px;
     border-radius: 15px;
@@ -23,7 +23,7 @@
 }
 
 .back {
-    margin: 15px;
+    margin-left: 15px;
     position: absolute;
 }
 
@@ -51,6 +51,18 @@
     margin-right: 10px;
 }
 
+@media screen and (max-width: 950px) {
+    .back {
+        margin: 15px;
+        position: relative;
+        margin-top: 42.5px;
+        margin-bottom: 10px;
+    }
+    .page {
+        margin-top: 0px;
+    }
+}
+
 @media screen and (max-width: 720px) {
     .page {
         width: auto;
@@ -61,14 +73,11 @@
     .back {
         margin: 15px;
         position: relative;
+        margin-top: 42.5px;
+        margin-bottom: 10px;
     }
 }
-@media screen and (max-width: 950px) {
-    .back {
-        margin: 15px;
-        position: relative;
-    }
-}
+
 @media screen and (max-width: 560px) {
     .page-toDo {
         display: flex;
