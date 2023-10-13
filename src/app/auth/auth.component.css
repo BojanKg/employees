@@ -10,5 +10,5 @@
 }
 
 .log {
-    height: 70vh;
+    height: calc(100vh - 173px);
 }

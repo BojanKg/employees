@@ -28,10 +28,14 @@ export class EmployeesComponent implements OnInit {
   submitted: boolean;
   check = false;
   dateCheck: number;
+  private audio: HTMLAudioElement;
 
   loading: boolean = false;
 
-  constructor(private employeeService: EmployeeService, private confirmationService: ConfirmationService, private messageService: MessageService, private detailService: DetailService, private popUp: PopUpService) {}
+  constructor(private employeeService: EmployeeService, private confirmationService: ConfirmationService, private messageService: MessageService, private detailService: DetailService, private popUp: PopUpService) {
+    this.audio = new Audio();
+    this.audio.src = 'assets/glass_ping-Go445-1207030150.mp3';
+  }
 
   ngOnInit(): void {
     this.getEmployees();
@@ -143,9 +147,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   calcDayPay(employee: Employee) {
-    const audio = new Audio('https://drive.google.com/file/d/1E8gzbks53daO5ncOWTVqz4-cbu5dGpic/view?usp=sharing');
-    audio.load();
-    audio.play();
+    this.audio.play();
 
     let workingKeys: string[];
     let key: string = '';
