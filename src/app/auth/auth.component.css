@@ -12,3 +12,12 @@
 .log {
     height: calc(100vh - 173px);
 }
+
+@media screen and (max-width: 560px) {
+    .log {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: medium;
+    }
+}

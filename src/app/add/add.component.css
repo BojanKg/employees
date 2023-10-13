@@ -1,0 +1,14 @@
+.add-book {
+    margin-top: 85px;
+    margin-bottom: 30px;
+    height: calc(100vh - 185px);
+}
+
+@media screen and (max-width: 660px) {
+    .add-book {
+        width: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: medium;
+    }
+}
