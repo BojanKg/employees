@@ -6,7 +6,11 @@
     padding: 40px;
     border-radius: 10px;
     margin-bottom: 1rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid #dee2e6; 
+}
+
+.log {
+    height: calc(100vh - 70px);
 }
 
 @media screen and (max-width: 440px) {
