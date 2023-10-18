@@ -15,7 +15,7 @@
             </div>
         </ng-template>
     </p-toolbar>
-    <div class="date"><div>{{dateCheck | date:'dd.MM.yyyy'}}</div><div id="MyClockDisplay" class="clock" onload="showTime()"></div><div>{{dateCheck | date:'EEEE'}}</div></div>
+    <div class="date"><div>{{dateCheck | date:'dd.MMMM.yyyy'}}</div><div id="MyClockDisplay" class="clock" onload="showTime()"></div><div>{{dateCheck | date:'EEEE'}}</div></div>
     <p-table
         [loading]="loading"
         #dt

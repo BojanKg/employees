@@ -14,6 +14,7 @@ export class PopUpComponent implements OnInit {
   multiCheck = false;
   check = false;
   checkCamera = false;
+  calck = false;
   
   constructor(private popUp: PopUpService, private detail: DetailService) {}
   
@@ -37,11 +38,16 @@ export class PopUpComponent implements OnInit {
     this.popUp.getDate().subscribe((data) => {
       this.time = data;
     })
+
+    this.popUp.getCalck().subscribe((data) => {
+      this.calck = data;
+    })
   }
 
   checkClick() {
     this.multiCheck = false;
     this.check = false;
     this.checkCamera = false;
+    this.calck = false;
   }
 }

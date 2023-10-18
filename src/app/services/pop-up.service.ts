@@ -9,6 +9,7 @@ export class PopUpService {
   private checkCamera = new BehaviorSubject<boolean>(false);
   private multiCheck = new BehaviorSubject<boolean>(false);
   private date = new BehaviorSubject<number>(0);
+  private calck = new BehaviorSubject<boolean>(false);
 
   setCheck(check: boolean) {
     this.check.next(check);
@@ -40,6 +41,14 @@ export class PopUpService {
 
   getDate() {
     return this.date.asObservable();
+  }
+
+  setCalck(calck: boolean) {
+    this.calck.next(calck);
+  }
+
+  getCalck() {
+    return this.calck.asObservable();
   }
 
   constructor() { }

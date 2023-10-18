@@ -51,10 +51,6 @@
     margin-right: 10px;
 }
 
-.details {
-    height: calc(100vh - 173px);
-}
-
 @media screen and (max-width: 950px) {
     .back {
         margin: 15px;

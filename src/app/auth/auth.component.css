@@ -9,12 +9,8 @@
     border: 1px solid #dee2e6;
 }
 
-.log {
-    height: calc(100vh - 173px);
-}
-
-@media screen and (max-width: 560px) {
-    .log {
+@media screen and (max-width: 440px) {
+    .auth {
         width: auto;
         margin-left: 10px;
         margin-right: 10px;
