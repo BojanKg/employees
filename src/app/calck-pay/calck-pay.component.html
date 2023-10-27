@@ -1,0 +1,25 @@
+<div *ngIf="calck" class="modal-margin card" id="staticBackdrop" >
+    <div>{{time | date:'dd.MMMM.yyyy'}}</div>
+    <div class="img card-header">
+        <img src="{{employee.image}}" [alt]="employee.fullName" width="100" class="shadow-4">
+        <div class="name">
+            {{employee.fullName}} - {{employee.jobTitle}}
+        </div>
+    </div>
+    
+    <div class="card-body in-out">
+        Number days: {{numberDays}}
+    </div>
+
+    <div *ngIf="calckPayPay" class="card-body in-out">
+        Hours: {{calckPayPay}}
+    </div>
+
+    <p-dropdown [options]="month" [(ngModel)]="selectedMonth" optionLabel="name" (ngModelChange)="getMonth()"></p-dropdown>
+
+    <div class="confirmCalck">
+        <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning" (click)="exit()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-warning" (click)="calckPay()"></button> 
+    </div>
+    
+</div>

@@ -1,0 +1,26 @@
+.modal-margin {
+    border-radius: 5%;
+    position:fixed;
+    padding: 20px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.confirmCalck {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirmCalck > button {
+    margin-right: 10px;
+}
+
+.img {
+    display: flex;
+}
+
+.name {
+    margin-left: 5px;
+}

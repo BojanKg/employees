@@ -29,6 +29,7 @@ export class EmployeesComponent implements OnInit {
   check = false;
   dateCheck: number;
   private audio: HTMLAudioElement;
+  calck = false;
 
   loading: boolean = false;
 
@@ -228,23 +229,30 @@ export class EmployeesComponent implements OnInit {
   }
 
   salaryCalc(employee: Employee) {
-    let date = new Date();
-    let salary = (Object.values(employee.workingDays!));
-    let allTime = [];
-    for(let i = 0; i < salary.length; i++) {
-      allTime.push(salary[i].allTime);
-    }
-    let calc =  this.calcAllTime(allTime);
-    console.log('Salary: ',calc / 3600000);
+    this.detailService.setDetail(employee);
+    this.calck = true;
 
-    const payoff: Payoff = {
-      hours: calc / 3600000,
-      pay: employee.pricePerHour! * calc / 3600000,
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-    }
+    // let date = new Date();
+    // let salary = (Object.values(employee.workingDays!));
+    // let allTime = [];
+    // for(let i = 0; i < salary.length; i++) {
+    //   allTime.push(salary[i].allTime);
+    // }
+    // let calc =  this.calcAllTime(allTime);
+    // console.log('Salary: ',calc / 3600000);
 
-    this.employeeService.setPayoff(employee, payoff);
+    // const payoff: Payoff = {
+    //   hours: calc / 3600000,
+    //   pay: employee.pricePerHour! * calc / 3600000,
+    //   year: date.getFullYear(),
+    //   month: date.getMonth() + 1,
+    // }
+
+    // this.employeeService.setPayoff(employee, payoff);
+  }
+
+  exitCalck(calck: boolean) {
+    this.calck = calck;
   }
 
   lazyLoad() {

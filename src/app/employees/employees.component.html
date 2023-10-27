@@ -1,4 +1,8 @@
 <app-pop-up></app-pop-up>
+<app-calck-pay 
+    [calck]="calck"
+    (calckSend)="exitCalck($event)">
+</app-calck-pay>
 <div class="employees">
     <p-toolbar styleClass="mb-4 gap-2">
         <ng-template pTemplate="left">

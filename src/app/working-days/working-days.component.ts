@@ -61,7 +61,6 @@ export class WorkingDaysComponent implements OnInit {
     let date = new Date(dateCalck);
     let selected = this.month.find(month => month.code === date.getMonth());
 
-
     let com1 = selected?.name;
     let com2 = this.selectedMonth?.name;
     return com1 === com2;

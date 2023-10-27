@@ -107,6 +107,7 @@ import { PopUpComponent } from './pop-up/pop-up.component';
 import { CkeckComponent } from './ckeck/ckeck.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FooterComponent } from './footer/footer.component';
+import { CalckPayComponent } from './calck-pay/calck-pay.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { FooterComponent } from './footer/footer.component';
     PopUpComponent,
     CkeckComponent,
     FooterComponent,
+    CalckPayComponent,
   ],
   imports: [
     BrowserModule,
